@@ -1,4 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Stocks, StocksDocument } from './schema/stocks.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
-export class StocksService {}
+export class StocksService {
+    constructor(
+        @InjectModel(Stocks.name) private stocskModel: Model<StocksDocument>,
+    ){}
+
+    async getAll(): Promise<Stocks[]>{
+        return this.stocskModel.find().exec();
+    }
+}
