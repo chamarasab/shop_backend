@@ -15,6 +15,6 @@ export class StocksService {
 
     async create(stocks:Stocks){
         const newStocks = new this.stocskModel(stocks);
-        return newStocks;
+        return newStocks.save();
     }
 }
