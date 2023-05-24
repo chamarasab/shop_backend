@@ -12,4 +12,9 @@ export class StocksService {
     async getAll(): Promise<Stocks[]>{
         return this.stocskModel.find().exec();
     }
+
+    async create(stocks:Stocks){
+        const newStocks = new this.stocskModel(stocks);
+        return newStocks;
+    }
 }
