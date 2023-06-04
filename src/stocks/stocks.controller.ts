@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { StocksService } from './stocks.service';
 import { Stocks } from './schema/stocks.schema';
 
@@ -22,5 +30,9 @@ export class StocksController {
   @Put('/:id')
   async updateStocks(@Param('id') id: string, @Body() stocks: Stocks) {
     return await this.stocksService.update(id, stocks);
+  }
+  @Delete('/:id')
+  async deleteStocks(@Param('id') id: string) {
+    await this.stocksService.delete(id);
   }
 }
