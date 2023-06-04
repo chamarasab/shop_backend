@@ -5,16 +5,20 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class StocksService {
-    constructor(
-        @InjectModel(Stocks.name) private stocskModel: Model<StocksDocument>,
-    ){}
+  constructor(
+    @InjectModel(Stocks.name) private stocskModel: Model<StocksDocument>,
+  ) {}
 
-    async getAll(): Promise<Stocks[]>{
-        return this.stocskModel.find().exec();
-    }
+  async getAll(): Promise<Stocks[]> {
+    return this.stocskModel.find().exec();
+  }
 
-    async create(stocks:Stocks){
-        const newStocks = new this.stocskModel(stocks);
-        return newStocks.save();
-    }
+  async create(stocks: Stocks) {
+    const newStocks = new this.stocskModel(stocks);
+    return newStocks.save();
+  }
+
+  async getById(id: string) {
+    return this.stocskModel.findById(id).exec();
+  }
 }
