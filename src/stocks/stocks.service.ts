@@ -21,4 +21,8 @@ export class StocksService {
   async getById(id: string) {
     return this.stocskModel.findById(id).exec();
   }
+
+  async update(id: string, stocks: Stocks) {
+    return this.stocskModel.findByIdAndUpdate(id, stocks, { new: true });
+  }
 }
